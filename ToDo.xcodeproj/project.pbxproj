@@ -13,6 +13,7 @@
 		718AD0741F228ADE00356D2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718AD0731F228ADE00356D2A /* Assets.xcassets */; };
 		718AD0771F228ADE00356D2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 718AD0751F228ADE00356D2A /* LaunchScreen.storyboard */; };
 		718AD0821F228ADE00356D2A /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718AD0811F228ADE00356D2A /* ToDoTests.swift */; };
+		719B301D1F2A728B00BB7B70 /* ToDoItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B301C1F2A728B00BB7B70 /* ToDoItemTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		718AD07D1F228ADE00356D2A /* ToDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		718AD0811F228ADE00356D2A /* ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
 		718AD0831F228ADE00356D2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		719B301C1F2A728B00BB7B70 /* ToDoItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItemTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				718AD06C1F228ADE00356D2A /* AppDelegate.swift */,
 				718AD06E1F228ADE00356D2A /* ViewController.swift */,
 				718AD0701F228ADE00356D2A /* Main.storyboard */,
+				719B301C1F2A728B00BB7B70 /* ToDoItemTableViewCell.swift */,
 				718AD0731F228ADE00356D2A /* Assets.xcassets */,
 				718AD0751F228ADE00356D2A /* LaunchScreen.storyboard */,
 				718AD0781F228ADE00356D2A /* Info.plist */,
@@ -200,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				718AD06F1F228ADE00356D2A /* ViewController.swift in Sources */,
+				719B301D1F2A728B00BB7B70 /* ToDoItemTableViewCell.swift in Sources */,
 				718AD06D1F228ADE00356D2A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +412,7 @@
 				718AD0881F228ADE00356D2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		718AD0891F228ADE00356D2A /* Build configuration list for PBXNativeTarget "ToDoTests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +421,7 @@
 				718AD08B1F228ADE00356D2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
