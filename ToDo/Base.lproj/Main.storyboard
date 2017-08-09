@@ -54,11 +54,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eA3-DI-noW" customClass="ToDoItemTableViewCell" customModule="ToDo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifier" id="eA3-DI-noW" customClass="ToDoItemTableViewCell" customModule="ToDo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eA3-DI-noW" id="MC4-bm-2EQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3CM-eW-5wL">
@@ -74,6 +74,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="isCompleteSwitch" destination="3CM-eW-5wL" id="0Av-aM-fl9"/>
+                                            <outlet property="taskLabel" destination="lT7-4K-t17" id="3I9-rh-UJf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -89,7 +93,6 @@
                     </view>
                     <connections>
                         <outlet property="taskTextField" destination="4uC-x1-eH8" id="PQj-ex-EXX"/>
-                        <outlet property="toDoLabel" destination="xKr-gz-s5F" id="x3t-Co-c8F"/>
                         <outlet property="toDoTable" destination="0am-5P-0va" id="8NX-Qt-dig"/>
                     </connections>
                 </viewController>
