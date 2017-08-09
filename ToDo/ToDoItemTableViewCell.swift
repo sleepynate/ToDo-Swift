@@ -10,6 +10,10 @@ import UIKit
 
 class ToDoItemTableViewCell: UITableViewCell {
 
+    //MARK: Properties
+    @IBOutlet weak var taskLabel: UILabel!
+    @IBOutlet weak var isCompleteSwitch: UISwitch!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
