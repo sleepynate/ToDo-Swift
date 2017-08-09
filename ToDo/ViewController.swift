@@ -60,11 +60,15 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toDoItems.count
+        if (section == 0) {
+            return toDoItems.filter({item in !item.done}).count
+        } else {
+            return toDoItems.filter({item in item.done}).count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,7 +78,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
         let todo = toDoItems[indexPath.row]
         cell.taskLabel.text = todo.task
-        cell.isCompleteSwitch.isOn = todo.done
+        cell.isCompleteSwitch.setOn(!todo.done, animated: false)
         return cell
     }
 }
