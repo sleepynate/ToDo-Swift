@@ -13,7 +13,7 @@ class ToDoItemTableViewCell: UITableViewCell {
     //MARK: Properties
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var isCompleteSwitch: UISwitch!
-    var onSwitchSelected: ((UISwitch) -> Unit)?
+    var onSwitchSelected: ((UISwitch) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,9 +27,9 @@ class ToDoItemTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func switchChanged(switch: UISwitch) -> Unit {
+    func switchChanged(s: UISwitch) -> Void {
         if let f = onSwitchSelected {
-            return f(switch)
+            return f(s)
         }
     }
 }
