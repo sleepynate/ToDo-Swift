@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
 
     struct ToDoItem {
-        let done: Bool
+        var done: Bool
         let added: Date
         let task: String
     }
@@ -78,7 +78,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
         let todo = toDoItems[indexPath.row]
         cell.taskLabel.text = todo.task
-        cell.isCompleteSwitch.setOn(!todo.done, animated: false)
+        cell.isCompleteSwitch.setOn(todo.done, animated: false)
+        cell.onSwitchSelected = { uiSwitch in
+            self.toDoItems[indexPath.row] = ToDoItem.init(done: uiSwitch.isOn, added: todo.added, task: todo.task)
+        }
         return cell
     }
 }
