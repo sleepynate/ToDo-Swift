@@ -80,7 +80,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         cell.taskLabel.text = todo.task
         cell.isCompleteSwitch.setOn(todo.done, animated: false)
         cell.onSwitchSelected = { uiSwitch in
-            self.toDoItems[indexPath.row] = ToDoItem.init(done: uiSwitch.isOn, added: todo.added, task: todo.task)
+            let isDone = uiSwitch.isOn
+            let section = isDone ? 1 : 0
+            let moveTo = IndexPath.init(row: self.toDoTable.numberOfRows(inSection: section), section: section)
+            self.toDoItems[indexPath.row] = ToDoItem.init(done: isDone, added: todo.added, task: todo.task)
+//            print("moving to \(moveTo)")
+//            self.toDoTable.beginUpdates()
+//            self.toDoTable.moveRow(at: indexPath, to: moveTo)
+//            self.toDoTable.endUpdates()
         }
         return cell
     }
