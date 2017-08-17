@@ -7,14 +7,9 @@
 //
 
 import UIKit
+import os.log
 
 class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
-
-    struct ToDoItem {
-        var done: Bool
-        let added: Date
-        let task: String
-    }
     
     //MARK: Properties
     @IBOutlet weak var taskTextField: UITextField!
@@ -28,6 +23,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         taskTextField.delegate = self
         toDoTable.delegate = self
         toDoTable.dataSource = self
+        
+        if let saved = loadToDos() {
+            toDoItems += saved
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +54,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             let item = ToDoItem(done: false, added: Date(), task:task)
             toDoItems.append(item)
             taskTextField.text = ""
+            saveToDos()
             toDoTable.reloadData()
         }
     }
@@ -65,9 +65,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
-            return toDoItems.filter({item in !item.done}).count
+            let count = toDoItems.filter({item in !item.done}).count
+            print("count for section 0 was \(count)")
+            return count
         } else {
-            return toDoItems.filter({item in item.done}).count
+            let count = toDoItems.filter({item in item.done}).count
+            print("count for section 1 was \(count)")
+            return count
         }
     }
     
@@ -76,7 +80,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             as? ToDoItemTableViewCell else {
             fatalError("cell has wrong type")
         }
-        let todo = toDoItems[indexPath.row]
+        let todo = toDoItems.filter({item in indexPath.section == 0 ? !item.done : item.done})[indexPath.row]
         cell.taskLabel.text = todo.task
         cell.isCompleteSwitch.setOn(todo.done, animated: false)
         cell.onSwitchSelected = { uiSwitch in
@@ -84,12 +88,26 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             let section = isDone ? 1 : 0
             let moveTo = IndexPath.init(row: self.toDoTable.numberOfRows(inSection: section), section: section)
             self.toDoItems[indexPath.row] = ToDoItem.init(done: isDone, added: todo.added, task: todo.task)
-//            print("moving to \(moveTo)")
-//            self.toDoTable.beginUpdates()
-//            self.toDoTable.moveRow(at: indexPath, to: moveTo)
-//            self.toDoTable.endUpdates()
+            self.toDoTable.beginUpdates()
+            print("moving from \(indexPath) to \(moveTo)")
+            self.toDoTable.moveRow(at: indexPath, to: moveTo)
+            self.toDoTable.endUpdates()
         }
         return cell
+    }
+    
+    //MARK: Private Methods
+    private func saveToDos() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(toDoItems, toFile: ToDoItem.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("ToDos successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save meals...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadToDos() -> [ToDoItem]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: ToDoItem.ArchiveURL.path) as? [ToDoItem]
     }
 }
 
