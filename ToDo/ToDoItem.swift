@@ -44,7 +44,7 @@ class ToDoItem : NSObject, NSCoding {
     }
 
     required convenience init?(coder aDecoder: NSCoder) {
-        guard let done = aDecoder.decodeObject(forKey: PropertyKey.done) as? Bool else {
+        guard let done = aDecoder.decodeBool(forKey: PropertyKey.done) as? Bool else {
             os_log("Could not decode ToDoItem")
             return nil
         }
