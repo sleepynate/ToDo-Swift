@@ -28,6 +28,7 @@ class ToDoItemTableViewCell: UITableViewCell {
     }
     
     func switchChanged(s: UISwitch) -> Void {
+        //self.delegate.cellWasToggled(self, self.isOn)
         if let f = onSwitchSelected {
             return f(s)
         }
